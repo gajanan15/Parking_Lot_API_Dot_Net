@@ -18,8 +18,6 @@ namespace ParkingLotApplication
     using Microsoft.Extensions.Options;
     using Microsoft.OpenApi.Models;
     using ParkingLotBussinessLayer;
-    using ParkingLotBussinessLayer.Implementation;
-    using ParkingLotBussinessLayer.Interface;
     using ParkingLotRepositoryLayer;
 
     /// <summary>
@@ -53,7 +51,6 @@ namespace ParkingLotApplication
             services.AddSingleton<IConfiguration>(this.Configuration);
             services.AddTransient<IParkingRepository, ParkingRepository>();
             services.AddTransient<IOwnerService, OwnerService>();
-            services.AddTransient<IPoliceService, PoliceService>();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" }); });
         }
 
