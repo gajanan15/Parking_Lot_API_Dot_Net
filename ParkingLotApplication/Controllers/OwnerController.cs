@@ -125,5 +125,26 @@ namespace ParkingLotApplication.Controllers
                 return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
             }
         }
+
+        [Route("empty/slots")]
+        [HttpGet]
+        public ActionResult GetAllEmptySolts()
+        {
+            try
+            {
+                List<VehicleDetails> allVehicles = this.ownerService.GetAllEmptySlots();
+
+                if (allVehicles != null)
+                {
+                    return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Fetch All Empty Slots", allVehicles));
+                }
+
+                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
+            }
+        }
     }
 }

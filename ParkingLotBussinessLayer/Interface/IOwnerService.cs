@@ -26,5 +26,7 @@ namespace ParkingLotBussinessLayer
         VehicleDetails SearchBySlotNumber(int slotNumber);
 
         List<VehicleDetails> GetAllVehicles();
+
+        List<VehicleDetails> GetAllEmptySlots();
     }
 }

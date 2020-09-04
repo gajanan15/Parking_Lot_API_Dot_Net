@@ -53,5 +53,10 @@ namespace ParkingLotBussinessLayer
         {
             return this.parkingRepository.UnParkVehicle(slotNumber);
         }
+
+        public List<VehicleDetails> GetAllEmptySlots()
+        {
+            return this.parkingRepository.GetAllEmptySlots();
+        }
     }
 }

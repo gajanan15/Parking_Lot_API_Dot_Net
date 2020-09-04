@@ -26,5 +26,7 @@ namespace ParkingLotRepositoryLayer
         VehicleDetails GetVehicleByVehicleNumber(string vehicleNumber);
 
         List<VehicleDetails> GetAllVehicles();
+
+        List<VehicleDetails> GetAllEmptySlots();
     }
 }
