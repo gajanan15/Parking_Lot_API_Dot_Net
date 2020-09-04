@@ -20,5 +20,7 @@ namespace ParkingLotRepositoryLayer
         Parking AddVehicleToParking(Parking parking);
 
         VehicleDetails UnParkVehicle(int slotNumber);
+
+        VehicleDetails GetVehicleData(int slotNumber);
     }
 }
