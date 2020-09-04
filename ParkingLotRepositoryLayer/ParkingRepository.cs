@@ -155,5 +155,40 @@ namespace ParkingLotRepositoryLayer
 
             return null;
         }
+
+        public List<VehicleDetails> GetAllVehicles()
+        {
+            List<VehicleDetails> vehicleDetailsList = new List<VehicleDetails>();
+
+            using (this.connection)
+            {
+                SqlCommand command = new SqlCommand("spGetAllVehicles", this.connection);
+                command.CommandType = CommandType.StoredProcedure;
+                this.connection.Open();
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                if (sqlDataReader.HasRows)
+                {
+                    while (sqlDataReader.Read())
+                    {
+                        VehicleDetails vehicleDetails = new VehicleDetails();
+                        vehicleDetails.Parking_Id = Convert.ToInt32(sqlDataReader["PARKING_ID"]);
+                        vehicleDetails.SlotNumber = Convert.ToInt32(sqlDataReader["SLOT_NUMBER"]);
+                        vehicleDetails.VehicleNumber = sqlDataReader["VEHICLE_NUMBER"].ToString();
+                        vehicleDetails.VehicleType = Convert.ToInt32(sqlDataReader["VEHICLE_TYPE"]);
+                        vehicleDetails.EntryTime = sqlDataReader["ENTRY_TIME"].ToString();
+                        vehicleDetails.ParkingType = Convert.ToInt32(sqlDataReader["PARKING_TYPE"]);
+                        vehicleDetails.DriverType = Convert.ToInt32(sqlDataReader["DRIVER_TYPE"]);
+                        vehicleDetails.Disabled = sqlDataReader["DISABLED"].ToString();
+                        vehicleDetails.ExitTime = sqlDataReader["EXIT_TIME"].ToString();
+                        vehicleDetailsList.Add(vehicleDetails);
+                    }
+
+                    this.connection.Close();
+                    return vehicleDetailsList;
+                }
+            }
+
+            return null;
+        }
     }
 }

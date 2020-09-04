@@ -5,6 +5,7 @@
 namespace ParkingLotApplication.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Net;
     using Microsoft.AspNetCore.Mvc;
     using ParkingLotBussinessLayer;
@@ -94,6 +95,27 @@ namespace ParkingLotApplication.Controllers
                 if (searchVehicle != null)
                 {
                     return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Vehicle Find Successfully", searchVehicle));
+                }
+
+                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
+            }
+        }
+
+        [Route("all/vehicles")]
+        [HttpGet]
+        public ActionResult GetAllVehicles()
+        {
+            try
+            {
+                List<VehicleDetails> allVehicles = this.ownerService.GetAllVehicles();
+
+                if (allVehicles != null)
+                {
+                    return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Fetch All Vehicles", allVehicles));
                 }
 
                 return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));

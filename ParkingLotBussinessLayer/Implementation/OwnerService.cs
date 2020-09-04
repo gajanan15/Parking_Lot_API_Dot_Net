@@ -44,6 +44,11 @@ namespace ParkingLotBussinessLayer
             return this.parkingRepository.GetVehicleByVehicleNumber(vehicleNumber);
         }
 
+        public List<VehicleDetails> GetAllVehicles()
+        {
+            return this.parkingRepository.GetAllVehicles();
+        }
+
         public VehicleDetails UnParkVehicle(int slotNumber)
         {
             return this.parkingRepository.UnParkVehicle(slotNumber);
