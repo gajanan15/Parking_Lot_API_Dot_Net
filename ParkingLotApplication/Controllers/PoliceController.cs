@@ -61,5 +61,26 @@ namespace ParkingLotApplication.Controllers
                 return this.BadRequest(new { Success = false, e.Message });
             }
         }
+
+        [Route("search/vehiclenumber")]
+        [HttpGet]
+        public ActionResult SearchVehicleByVehicleNumber(string vehicleNumber)
+        {
+            try
+            {
+                VehicleDetails searchVehicle = this.policeService.SearchByVehicleNumber(vehicleNumber);
+
+                if (searchVehicle != null)
+                {
+                    return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Vehicle Find Successfully", searchVehicle));
+                }
+
+                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
+            }
+        }
     }
 }

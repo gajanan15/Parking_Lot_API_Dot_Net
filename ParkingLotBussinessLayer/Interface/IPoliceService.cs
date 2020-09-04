@@ -14,5 +14,7 @@ namespace ParkingLotBussinessLayer.Interface
         Parking ParkVehicle(Parking parking);
 
         VehicleDetails UnParkVehicle(int slotNumber);
+
+        VehicleDetails SearchByVehicleNumber(string vehicleNumber);
     }
 }
