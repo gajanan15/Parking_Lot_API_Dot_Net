@@ -122,5 +122,38 @@ namespace ParkingLotRepositoryLayer
 
             return null;
         }
+
+        public VehicleDetails GetVehicleByVehicleNumber(string vehicleNumber)
+        {
+            VehicleDetails vehicleDetails = new VehicleDetails();
+            using (this.connection)
+            {
+                SqlCommand command = new SqlCommand("spGetDetailsByVehicleNumber", this.connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@VehicleNumber", vehicleNumber);
+                this.connection.Open();
+                SqlDataReader sqlDataReader = command.ExecuteReader();
+                if (sqlDataReader.HasRows)
+                {
+                    while (sqlDataReader.Read())
+                    {
+                        vehicleDetails.Parking_Id = Convert.ToInt32(sqlDataReader["PARKING_ID"]);
+                        vehicleDetails.SlotNumber = Convert.ToInt32(sqlDataReader["SLOT_NUMBER"]);
+                        vehicleDetails.VehicleNumber = sqlDataReader["VEHICLE_NUMBER"].ToString();
+                        vehicleDetails.VehicleType = Convert.ToInt32(sqlDataReader["VEHICLE_TYPE"]);
+                        vehicleDetails.EntryTime = sqlDataReader["ENTRY_TIME"].ToString();
+                        vehicleDetails.ParkingType = Convert.ToInt32(sqlDataReader["PARKING_TYPE"]);
+                        vehicleDetails.DriverType = Convert.ToInt32(sqlDataReader["DRIVER_TYPE"]);
+                        vehicleDetails.Disabled = sqlDataReader["DISABLED"].ToString();
+                        vehicleDetails.ExitTime = sqlDataReader["EXIT_TIME"].ToString();
+                    }
+
+                    this.connection.Close();
+                    return vehicleDetails;
+                }
+            }
+
+            return null;
+        }
     }
 }

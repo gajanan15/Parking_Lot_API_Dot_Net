@@ -62,6 +62,27 @@ namespace ParkingLotApplication.Controllers
             }
         }
 
+        [Route("search/vehiclenumber")]
+        [HttpGet]
+        public ActionResult SearchVehicleByVehicleNumber(string vehicleNumber)
+        {
+            try
+            {
+                VehicleDetails searchVehicle = this.ownerService.SearchByVehicleNumber(vehicleNumber);
+
+                if (searchVehicle != null)
+                {
+                    return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Vehicle Find Successfully", searchVehicle));
+                }
+
+                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
+            }
+        }
+
         [Route("search/slotnumber")]
         [HttpGet]
         public ActionResult SearchVehicleBySlotNumber(int slotnumber)

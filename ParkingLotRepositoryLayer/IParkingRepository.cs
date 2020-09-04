@@ -22,5 +22,7 @@ namespace ParkingLotRepositoryLayer
         VehicleDetails UnParkVehicle(int slotNumber);
 
         VehicleDetails GetVehicleData(int slotNumber);
+
+        VehicleDetails GetVehicleByVehicleNumber(string vehicleNumber);
     }
 }
