@@ -28,7 +28,7 @@ namespace ParkingLotApplication.Controllers
             try
             {
                 Parking parkingVehicle = this.policeService.ParkVehicle(parking);
-                if (parkingVehicle.VehicleNumber != null)
+                if (parkingVehicle != null)
                 {
                     return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Vehicle Parked Successfully", parkingVehicle));
                 }
@@ -38,6 +38,27 @@ namespace ParkingLotApplication.Controllers
             catch (Exception e)
             {
                 return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
+            }
+        }
+
+        [Route("unpark")]
+        [HttpPut]
+        public ActionResult UnParkVehicle(int slotNumber)
+        {
+            try
+            {
+                VehicleDetails unParkingVehicle = this.policeService.UnParkVehicle(slotNumber);
+
+                if (unParkingVehicle != null)
+                {
+                    return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Vehicle Unparked Successfully", unParkingVehicle));
+                }
+
+                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new { Success = false, e.Message });
             }
         }
     }

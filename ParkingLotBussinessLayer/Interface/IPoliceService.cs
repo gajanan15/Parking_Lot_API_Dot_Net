@@ -12,5 +12,7 @@ namespace ParkingLotBussinessLayer.Interface
     public interface IPoliceService
     {
         Parking ParkVehicle(Parking parking);
+
+        VehicleDetails UnParkVehicle(int slotNumber);
     }
 }
