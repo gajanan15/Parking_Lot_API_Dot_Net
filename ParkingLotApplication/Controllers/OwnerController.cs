@@ -40,5 +40,26 @@ namespace ParkingLotApplication.Controllers
                 return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
             }
         }
+
+        [Route("unpark")]
+        [HttpPut]
+        public ActionResult UnParkVehicle(int slotNumber)
+        {
+            try
+            {
+                VehicleDetails unParkingVehicle = this.ownerService.UnParkVehicle(slotNumber);
+
+                if (unParkingVehicle != null)
+                {
+                    return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Vehicle Unparked Successfully", unParkingVehicle));
+                }
+
+                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
+            }
+        }
     }
 }

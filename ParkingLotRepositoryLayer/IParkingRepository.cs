@@ -18,5 +18,7 @@ namespace ParkingLotRepositoryLayer
         /// <param name="parking"></param>
         /// <returns></returns>
         Parking AddVehicleToParking(Parking parking);
+
+        VehicleDetails UnParkVehicle(int slotNumber);
     }
 }
