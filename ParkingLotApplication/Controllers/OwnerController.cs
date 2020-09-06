@@ -29,12 +29,12 @@ namespace ParkingLotApplication.Controllers
             try
             {
                 Parking parkingVehicle = this.ownerService.ParkVehicle(parking);
-                if (parkingVehicle.VehicleNumber != null)
+                if (parkingVehicle != null)
                 {
                     return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Vehicle Parked Successfully", parkingVehicle));
                 }
 
-                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));
+                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", parkingVehicle));
             }
             catch (Exception e)
             {
@@ -55,7 +55,7 @@ namespace ParkingLotApplication.Controllers
                     return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Vehicle Unparked Successfully", unParkingVehicle));
                 }
 
-                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));
+                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", unParkingVehicle));
             }
             catch (Exception e)
             {
@@ -76,7 +76,7 @@ namespace ParkingLotApplication.Controllers
                     return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Vehicle Find Successfully", searchVehicle));
                 }
 
-                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));
+                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", searchVehicle));
             }
             catch (Exception e)
             {
@@ -97,7 +97,7 @@ namespace ParkingLotApplication.Controllers
                     return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Vehicle Find Successfully", searchVehicle));
                 }
 
-                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));
+                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", searchVehicle));
             }
             catch (Exception e)
             {
@@ -118,7 +118,7 @@ namespace ParkingLotApplication.Controllers
                     return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Fetch All Vehicles", allVehicles));
                 }
 
-                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));
+                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", allVehicles));
             }
             catch (Exception e)
             {
@@ -139,7 +139,7 @@ namespace ParkingLotApplication.Controllers
                     return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Fetch All Empty Slots", allVehicles));
                 }
 
-                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));
+                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", allVehicles));
             }
             catch (Exception e)
             {

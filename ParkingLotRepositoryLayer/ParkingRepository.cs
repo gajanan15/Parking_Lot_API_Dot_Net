@@ -113,6 +113,7 @@ namespace ParkingLotRepositoryLayer
                         vehicleDetails.DriverType = Convert.ToInt32(sqlDataReader["DRIVER_TYPE"]);
                         vehicleDetails.Disabled = sqlDataReader["DISABLED"].ToString();
                         vehicleDetails.ExitTime = sqlDataReader["EXIT_TIME"].ToString();
+                        vehicleDetails.ParkingCharge = Convert.ToInt32(sqlDataReader["CHARGES"]);
                     }
 
                     this.connection.Close();
@@ -146,6 +147,7 @@ namespace ParkingLotRepositoryLayer
                         vehicleDetails.DriverType = Convert.ToInt32(sqlDataReader["DRIVER_TYPE"]);
                         vehicleDetails.Disabled = sqlDataReader["DISABLED"].ToString();
                         vehicleDetails.ExitTime = sqlDataReader["EXIT_TIME"].ToString();
+                        vehicleDetails.ParkingCharge = Convert.ToInt32(sqlDataReader["CHARGES"]);
                     }
 
                     this.connection.Close();
@@ -180,6 +182,7 @@ namespace ParkingLotRepositoryLayer
                         vehicleDetails.DriverType = Convert.ToInt32(sqlDataReader["DRIVER_TYPE"]);
                         vehicleDetails.Disabled = sqlDataReader["DISABLED"].ToString();
                         vehicleDetails.ExitTime = sqlDataReader["EXIT_TIME"].ToString();
+                        vehicleDetails.ParkingCharge = Convert.ToInt32(sqlDataReader["CHARGES"]);
                         vehicleDetailsList.Add(vehicleDetails);
                     }
 
@@ -215,6 +218,7 @@ namespace ParkingLotRepositoryLayer
                         vehicleDetails.DriverType = Convert.ToInt32(sqlDataReader["DRIVER_TYPE"]);
                         vehicleDetails.Disabled = sqlDataReader["DISABLED"].ToString();
                         vehicleDetails.ExitTime = sqlDataReader["EXIT_TIME"].ToString();
+                        vehicleDetails.ParkingCharge = Convert.ToInt32(sqlDataReader["CHARGES"]);
                         vehicleDetailsList.Add(vehicleDetails);
                     }
 

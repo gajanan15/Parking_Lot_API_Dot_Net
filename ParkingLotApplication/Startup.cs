@@ -54,6 +54,7 @@ namespace ParkingLotApplication
             services.AddTransient<IParkingRepository, ParkingRepository>();
             services.AddTransient<IOwnerService, OwnerService>();
             services.AddTransient<IPoliceService, PoliceService>();
+            services.AddTransient<IDriverService, DriverService>();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" }); });
         }
 

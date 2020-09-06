@@ -61,5 +61,10 @@ namespace ParkingLotModelLayer
         /// Gets or sets Exit Time.
         /// </summary>
         public string ExitTime { get; set; }
+
+        /// <summary>
+        /// Gets Or Sets Parking Charge.
+        /// </summary>
+        public int ParkingCharge { get; set; }
     }
 }

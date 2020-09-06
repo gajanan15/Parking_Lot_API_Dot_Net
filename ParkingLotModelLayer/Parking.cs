@@ -22,24 +22,18 @@ namespace ParkingLotModelLayer
         /// Gets or Sets Parking Type.
         /// </summary>
         [Required(ErrorMessage = "Parking Type Is Required")]
-
-        // [RegularExpression(@"^[A-Z]{1,}$", ErrorMessage = "Please Enter A Valid Parking Type")]
         public int ParkingType { get; set; }
 
         /// <summary>
         /// Gets or Sets Driver Type.
         /// </summary>
         [Required(ErrorMessage = "Driver Type Is Required")]
-
-        // [RegularExpression(@"^[A-Z]{1,}$", ErrorMessage = "Please Enter A Valid Driver Type")]
         public int DriverType { get; set; }
 
         /// <summary>
         /// Gets or Sets Vehicle Type.
         /// </summary>
         [Required(ErrorMessage = "Vehicle Type Is Required")]
-
-        // [RegularExpression(@"^[A-Z]{1,}$", ErrorMessage = "Please Enter A Valid Vehicle Type")]
         public int VehicleType { get; set; }
 
         /// <summary>
