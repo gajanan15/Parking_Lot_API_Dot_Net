@@ -38,7 +38,7 @@ namespace ParkingLotApplication.Controllers
             }
             catch (Exception e)
             {
-                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
+                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message));
             }
         }
 
@@ -59,7 +59,7 @@ namespace ParkingLotApplication.Controllers
             }
             catch (Exception e)
             {
-                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
+                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message));
             }
         }
 
@@ -80,7 +80,7 @@ namespace ParkingLotApplication.Controllers
             }
             catch (Exception e)
             {
-                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
+                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message));
             }
         }
 
@@ -101,7 +101,7 @@ namespace ParkingLotApplication.Controllers
             }
             catch (Exception e)
             {
-                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
+                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message));
             }
         }
 
@@ -122,7 +122,7 @@ namespace ParkingLotApplication.Controllers
             }
             catch (Exception e)
             {
-                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
+                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message));
             }
         }
 
@@ -143,7 +143,7 @@ namespace ParkingLotApplication.Controllers
             }
             catch (Exception e)
             {
-                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
+                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message));
             }
         }
     }

@@ -27,5 +27,11 @@ namespace ParkingLotModelLayer
             this.Message = message;
             this.Data = data;
         }
+
+        public ResponseEntity(HttpStatusCode httpStatusCode, string message)
+        {
+            this.HttpStatusCode = httpStatusCode;
+            this.Message = message;
+        }
     }
 }

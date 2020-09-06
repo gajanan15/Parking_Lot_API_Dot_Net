@@ -1,4 +1,4 @@
-﻿// <copyright file="PoliceController.cs" company="PlaceholderCompany">
+﻿// <copyright file="SecurityController.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -12,11 +12,11 @@ namespace ParkingLotApplication.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class PoliceController : ControllerBase
+    public class SecurityController : ControllerBase
     {
         private readonly IPoliceService policeService;
 
-        public PoliceController(IPoliceService policeService)
+        public SecurityController(IPoliceService policeService)
         {
             this.policeService = policeService;
         }
@@ -79,7 +79,7 @@ namespace ParkingLotApplication.Controllers
             }
             catch (Exception e)
             {
-                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message));
+                return this.BadRequest(new ResponseEntity(HttpStatusCode.BadRequest, e.Message, null));
             }
         }
     }
