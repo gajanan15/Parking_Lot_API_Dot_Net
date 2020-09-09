@@ -63,7 +63,7 @@ namespace ParkingLotApplication.Controllers
             }
         }
 
-        [Route("search/vehiclenumber")]
+        [Route("search/&vehicleNumber = {vehicleNumber}")]
         [HttpGet]
         public ActionResult SearchVehicleByVehicleNumber(string vehicleNumber)
         {
@@ -84,7 +84,7 @@ namespace ParkingLotApplication.Controllers
             }
         }
 
-        [Route("search/slotnumber")]
+        [Route("search/{slotnumber}")]
         [HttpGet]
         public ActionResult SearchVehicleBySlotNumber(int slotnumber)
         {
@@ -105,7 +105,7 @@ namespace ParkingLotApplication.Controllers
             }
         }
 
-        [Route("all/vehicles")]
+        [Route("vehicles")]
         [HttpGet]
         public ActionResult GetAllVehicles()
         {

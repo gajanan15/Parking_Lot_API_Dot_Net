@@ -1,0 +1,5 @@
+Driver Parked Vehicle Having Number: FG78HJ4548 At Time : 09-09-2020 11:14:22
+Driver Parked Vehicle Having Number: AD78FG1245 At Time : 09-09-2020 11:17:18
+Driver Parked Vehicle Having Number: AD78FG1227 At Time : 09-09-2020 11:17:18
+Driver UnParked Vehicle Having Number: FG78HJ4545 At Time : 09-09-2020 19:54:03 And Parking Charge : 24
+Driver UnParked Vehicle Having Number: AD78FG1227 At Time : 09-09-2020 19:55:06 And Parking Charge : 24

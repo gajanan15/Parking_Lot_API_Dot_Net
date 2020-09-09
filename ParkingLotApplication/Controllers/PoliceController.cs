@@ -62,7 +62,7 @@ namespace ParkingLotApplication.Controllers
             }
         }
 
-        [Route("search/vehiclenumber")]
+        [Route("search/&vehicleNumber={vehicleNumber}")]
         [HttpGet]
         public ActionResult SearchVehicleByVehicleNumber(string vehicleNumber)
         {

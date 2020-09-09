@@ -33,7 +33,7 @@ namespace ParkingLotApplication.Controllers
                     return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Vehicle Parked Successfully", parkingVehicle));
                 }
 
-                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));
+                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", parkingVehicle));
             }
             catch (Exception e)
             {
@@ -54,7 +54,7 @@ namespace ParkingLotApplication.Controllers
                     return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Vehicle Unparked Successfully", unParkingVehicle));
                 }
 
-                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", null));
+                return this.NotFound(new ResponseEntity(HttpStatusCode.NotFound, "No Record Found", unParkingVehicle));
             }
             catch (Exception e)
             {

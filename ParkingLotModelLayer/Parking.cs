@@ -4,6 +4,7 @@
 
 namespace ParkingLotModelLayer
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
@@ -42,5 +43,10 @@ namespace ParkingLotModelLayer
         [Required(ErrorMessage = "Slot Type Is Required")]
         [RegularExpression(@"^[0-9]{1,}$", ErrorMessage = "Please Enter A Valid Slot Number")]
         public int SlotNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets entry Time.
+        /// </summary>
+        public DateTime EntryTime { get; set; }
     }
 }
