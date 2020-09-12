@@ -17,7 +17,7 @@ namespace ParkingLotRepositoryLayer
         /// </summary>
         /// <param name="parking"></param>
         /// <returns></returns>
-        Parking AddVehicleToParking(Parking parking);
+        VehicleDetails AddVehicleToParking(Parking parking);
 
         VehicleDetails UnParkVehicle(int slotNumber);
 
@@ -28,5 +28,7 @@ namespace ParkingLotRepositoryLayer
         List<VehicleDetails> GetAllVehicles();
 
         List<VehicleDetails> GetAllEmptySlots();
+
+        string GetDriverType(int slotNumber);
     }
 }

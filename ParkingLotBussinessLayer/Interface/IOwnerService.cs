@@ -17,7 +17,7 @@ namespace ParkingLotBussinessLayer
         /// </summary>
         /// <param name="parking"></param>
         /// <returns></returns>
-        Parking ParkVehicle(Parking parking);
+        VehicleDetails ParkVehicle(Parking parking);
 
         VehicleDetails UnParkVehicle(int slotNumber);
 

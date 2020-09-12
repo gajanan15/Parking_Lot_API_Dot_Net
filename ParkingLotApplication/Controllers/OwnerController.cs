@@ -28,7 +28,7 @@ namespace ParkingLotApplication.Controllers
         {
             try
             {
-                Parking parkingVehicle = this.ownerService.ParkVehicle(parking);
+                VehicleDetails parkingVehicle = this.ownerService.ParkVehicle(parking);
                 if (parkingVehicle != null)
                 {
                     return this.Ok(new ResponseEntity(HttpStatusCode.OK, "Vehicle Parked Successfully", parkingVehicle));

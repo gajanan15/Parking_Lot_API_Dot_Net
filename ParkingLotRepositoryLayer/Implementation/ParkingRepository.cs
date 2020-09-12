@@ -32,10 +32,11 @@ namespace ParkingLotRepositoryLayer
         /// </summary>
         /// <param name="parking"></param>
         /// <returns></returns>
-        public Parking AddVehicleToParking(Parking parking)
+        public VehicleDetails AddVehicleToParking(Parking parking)
         {
             try
             {
+                VehicleDetails vehicleDetails = new VehicleDetails();
                 using (this.connection)
                 {
                     SqlCommand command = new SqlCommand("spParkVehicle", this.connection);
@@ -51,7 +52,8 @@ namespace ParkingLotRepositoryLayer
                     this.connection.Close();
                     if (result != 0)
                     {
-                        return parking;
+                        vehicleDetails = this.GetVehicleByVehicleNumber(parking.VehicleNumber);
+                        return vehicleDetails;
                     }
 
                     return null;
@@ -67,6 +69,7 @@ namespace ParkingLotRepositoryLayer
         {
             try
             {
+                VehicleDetails vehicleDetails = new VehicleDetails();
                 using (this.connection)
                 {
                     SqlCommand command = new SqlCommand("spUnParkVehicle", this.connection);
@@ -77,7 +80,8 @@ namespace ParkingLotRepositoryLayer
                     this.connection.Close();
                     if (result != 0)
                     {
-                        return this.GetVehicleData(slotNumber);
+                        vehicleDetails = this.GetVehicleData(slotNumber);
+                        return vehicleDetails;
                     }
 
                     return null;
@@ -93,141 +97,210 @@ namespace ParkingLotRepositoryLayer
         {
             VehicleDetails vehicleDetails = new VehicleDetails();
 
-            using (this.connection)
+            try
             {
-                SqlCommand command = new SqlCommand("spGetDetailsBySlotNumber", this.connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@SlotNumber", slotNumber);
-                this.connection.Open();
-                SqlDataReader sqlDataReader = command.ExecuteReader();
-                if (sqlDataReader.HasRows)
+                using (this.connection)
                 {
-                    while (sqlDataReader.Read())
+                    SqlCommand command = new SqlCommand("spGetDetailsBySlotNumber", this.connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@SlotNumber", slotNumber);
+                    this.connection.Open();
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+                    if (sqlDataReader.HasRows)
                     {
-                        vehicleDetails.Parking_Id = Convert.ToInt32(sqlDataReader["PARKING_ID"]);
-                        vehicleDetails.SlotNumber = Convert.ToInt32(sqlDataReader["SLOT_NUMBER"]);
-                        vehicleDetails.VehicleNumber = sqlDataReader["VEHICLE_NUMBER"].ToString();
-                        vehicleDetails.VehicleType = Convert.ToInt32(sqlDataReader["VEHICLE_TYPE"]);
-                        vehicleDetails.EntryTime = sqlDataReader["ENTRY_TIME"].ToString();
-                        vehicleDetails.ParkingType = Convert.ToInt32(sqlDataReader["PARKING_TYPE"]);
-                        vehicleDetails.DriverType = Convert.ToInt32(sqlDataReader["DRIVER_TYPE"]);
-                        vehicleDetails.Disabled = sqlDataReader["DISABLED"].ToString();
-                        vehicleDetails.ExitTime = sqlDataReader["EXIT_TIME"].ToString();
-                        vehicleDetails.ParkingCharge = Convert.ToInt32(sqlDataReader["CHARGES"]);
+                        while (sqlDataReader.Read())
+                        {
+                            vehicleDetails.Parking_Id = Convert.ToInt32(sqlDataReader["PARKING_ID"]);
+                            vehicleDetails.SlotNumber = Convert.ToInt32(sqlDataReader["SLOT_NUMBER"]);
+                            vehicleDetails.VehicleNumber = sqlDataReader["VEHICLE_NUMBER"].ToString();
+                            vehicleDetails.VehicleType = Convert.ToInt32(sqlDataReader["VEHICLE_TYPE"]);
+                            vehicleDetails.EntryTime = (DateTime)sqlDataReader["ENTRY_TIME"];
+                            vehicleDetails.ParkingType = Convert.ToInt32(sqlDataReader["PARKING_TYPE"]);
+                            vehicleDetails.DriverType = Convert.ToInt32(sqlDataReader["DRIVER_TYPE"]);
+                            vehicleDetails.Disabled = sqlDataReader["DISABLED"].ToString();
+                            vehicleDetails.ExitTime = (DateTime)sqlDataReader["EXIT_TIME"];
+                            vehicleDetails.ParkingCharge = Convert.ToInt32(sqlDataReader["CHARGES"]);
+                        }
+
+                        this.connection.Close();
+                        if (vehicleDetails != null)
+                        {
+                            vehicleDetails.RoleType = this.GetDriverType(vehicleDetails.SlotNumber);
+                            return vehicleDetails;
+                        }
                     }
-
-                    this.connection.Close();
-                    return vehicleDetails;
                 }
-            }
 
-            return null;
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public VehicleDetails GetVehicleByVehicleNumber(string vehicleNumber)
         {
             VehicleDetails vehicleDetails = new VehicleDetails();
-            using (this.connection)
+
+            try
             {
-                SqlCommand command = new SqlCommand("spGetDetailsByVehicleNumber", this.connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@VehicleNumber", vehicleNumber);
-                this.connection.Open();
-                SqlDataReader sqlDataReader = command.ExecuteReader();
-                if (sqlDataReader.HasRows)
+                using (this.connection)
                 {
-                    while (sqlDataReader.Read())
+                    SqlCommand command = new SqlCommand("spGetDetailsByVehicleNumber", this.connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@VehicleNumber", vehicleNumber);
+                    this.connection.Open();
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+                    if (sqlDataReader.HasRows)
                     {
-                        vehicleDetails.Parking_Id = Convert.ToInt32(sqlDataReader["PARKING_ID"]);
-                        vehicleDetails.SlotNumber = Convert.ToInt32(sqlDataReader["SLOT_NUMBER"]);
-                        vehicleDetails.VehicleNumber = sqlDataReader["VEHICLE_NUMBER"].ToString();
-                        vehicleDetails.VehicleType = Convert.ToInt32(sqlDataReader["VEHICLE_TYPE"]);
-                        vehicleDetails.EntryTime = sqlDataReader["ENTRY_TIME"].ToString();
-                        vehicleDetails.ParkingType = Convert.ToInt32(sqlDataReader["PARKING_TYPE"]);
-                        vehicleDetails.DriverType = Convert.ToInt32(sqlDataReader["DRIVER_TYPE"]);
-                        vehicleDetails.Disabled = sqlDataReader["DISABLED"].ToString();
-                        vehicleDetails.ExitTime = sqlDataReader["EXIT_TIME"].ToString();
-                        vehicleDetails.ParkingCharge = Convert.ToInt32(sqlDataReader["CHARGES"]);
+                        while (sqlDataReader.Read())
+                        {
+                            vehicleDetails.Parking_Id = Convert.ToInt32(sqlDataReader["PARKING_ID"]);
+                            vehicleDetails.SlotNumber = Convert.ToInt32(sqlDataReader["SLOT_NUMBER"]);
+                            vehicleDetails.VehicleNumber = sqlDataReader["VEHICLE_NUMBER"].ToString();
+                            vehicleDetails.VehicleType = Convert.ToInt32(sqlDataReader["VEHICLE_TYPE"]);
+                            vehicleDetails.EntryTime = (DateTime)sqlDataReader["ENTRY_TIME"];
+                            vehicleDetails.ParkingType = Convert.ToInt32(sqlDataReader["PARKING_TYPE"]);
+                            vehicleDetails.DriverType = Convert.ToInt32(sqlDataReader["DRIVER_TYPE"]);
+                            vehicleDetails.Disabled = sqlDataReader["DISABLED"].ToString();
+                            vehicleDetails.ExitTime = (DateTime)sqlDataReader["EXIT_TIME"];
+                            vehicleDetails.ParkingCharge = Convert.ToInt32(sqlDataReader["CHARGES"]);
+                        }
+
+                        this.connection.Close();
+                        if (vehicleDetails != null)
+                        {
+                            vehicleDetails.RoleType = this.GetDriverType(vehicleDetails.SlotNumber);
+                            return vehicleDetails;
+                        }
                     }
-
-                    this.connection.Close();
-                    return vehicleDetails;
                 }
-            }
 
-            return null;
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public List<VehicleDetails> GetAllVehicles()
         {
             List<VehicleDetails> vehicleDetailsList = new List<VehicleDetails>();
 
-            using (this.connection)
+            try
             {
-                SqlCommand command = new SqlCommand("spGetAllVehicles", this.connection);
-                command.CommandType = CommandType.StoredProcedure;
-                this.connection.Open();
-                SqlDataReader sqlDataReader = command.ExecuteReader();
-                if (sqlDataReader.HasRows)
+                using (this.connection)
                 {
-                    while (sqlDataReader.Read())
+                    SqlCommand command = new SqlCommand("spGetAllVehicles", this.connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    this.connection.Open();
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+                    if (sqlDataReader.HasRows)
                     {
-                        VehicleDetails vehicleDetails = new VehicleDetails();
-                        vehicleDetails.Parking_Id = Convert.ToInt32(sqlDataReader["PARKING_ID"]);
-                        vehicleDetails.SlotNumber = Convert.ToInt32(sqlDataReader["SLOT_NUMBER"]);
-                        vehicleDetails.VehicleNumber = sqlDataReader["VEHICLE_NUMBER"].ToString();
-                        vehicleDetails.VehicleType = Convert.ToInt32(sqlDataReader["VEHICLE_TYPE"]);
-                        vehicleDetails.EntryTime = sqlDataReader["ENTRY_TIME"].ToString();
-                        vehicleDetails.ParkingType = Convert.ToInt32(sqlDataReader["PARKING_TYPE"]);
-                        vehicleDetails.DriverType = Convert.ToInt32(sqlDataReader["DRIVER_TYPE"]);
-                        vehicleDetails.Disabled = sqlDataReader["DISABLED"].ToString();
-                        vehicleDetails.ExitTime = sqlDataReader["EXIT_TIME"].ToString();
-                        vehicleDetails.ParkingCharge = Convert.ToInt32(sqlDataReader["CHARGES"]);
-                        vehicleDetailsList.Add(vehicleDetails);
+                        while (sqlDataReader.Read())
+                        {
+                            VehicleDetails vehicleDetails = new VehicleDetails();
+                            vehicleDetails.Parking_Id = Convert.ToInt32(sqlDataReader["PARKING_ID"]);
+                            vehicleDetails.SlotNumber = Convert.ToInt32(sqlDataReader["SLOT_NUMBER"]);
+                            vehicleDetails.VehicleNumber = sqlDataReader["VEHICLE_NUMBER"].ToString();
+                            vehicleDetails.VehicleType = Convert.ToInt32(sqlDataReader["VEHICLE_TYPE"]);
+                            vehicleDetails.EntryTime = (DateTime)sqlDataReader["ENTRY_TIME"];
+                            vehicleDetails.ParkingType = Convert.ToInt32(sqlDataReader["PARKING_TYPE"]);
+                            vehicleDetails.DriverType = Convert.ToInt32(sqlDataReader["DRIVER_TYPE"]);
+                            vehicleDetails.Disabled = sqlDataReader["DISABLED"].ToString();
+                            vehicleDetails.ExitTime = (DateTime)sqlDataReader["EXIT_TIME"];
+                            vehicleDetails.ParkingCharge = Convert.ToInt32(sqlDataReader["CHARGES"]);
+                            vehicleDetailsList.Add(vehicleDetails);
+                        }
+
+                        this.connection.Close();
+                        return vehicleDetailsList;
                     }
-
-                    this.connection.Close();
-                    return vehicleDetailsList;
                 }
-            }
 
-            return null;
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public List<VehicleDetails> GetAllEmptySlots()
         {
             List<VehicleDetails> vehicleDetailsList = new List<VehicleDetails>();
 
-            using (this.connection)
+            try
             {
-                SqlCommand command = new SqlCommand("spGetEmptySlots", this.connection);
-                command.CommandType = CommandType.StoredProcedure;
-                this.connection.Open();
-                SqlDataReader sqlDataReader = command.ExecuteReader();
-                if (sqlDataReader.HasRows)
+                using (this.connection)
                 {
-                    while (sqlDataReader.Read())
+                    SqlCommand command = new SqlCommand("spGetEmptySlots", this.connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    this.connection.Open();
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+                    if (sqlDataReader.HasRows)
                     {
-                        VehicleDetails vehicleDetails = new VehicleDetails();
-                        vehicleDetails.Parking_Id = Convert.ToInt32(sqlDataReader["PARKING_ID"]);
-                        vehicleDetails.SlotNumber = Convert.ToInt32(sqlDataReader["SLOT_NUMBER"]);
-                        vehicleDetails.VehicleNumber = sqlDataReader["VEHICLE_NUMBER"].ToString();
-                        vehicleDetails.VehicleType = Convert.ToInt32(sqlDataReader["VEHICLE_TYPE"]);
-                        vehicleDetails.EntryTime = sqlDataReader["ENTRY_TIME"].ToString();
-                        vehicleDetails.ParkingType = Convert.ToInt32(sqlDataReader["PARKING_TYPE"]);
-                        vehicleDetails.DriverType = Convert.ToInt32(sqlDataReader["DRIVER_TYPE"]);
-                        vehicleDetails.Disabled = sqlDataReader["DISABLED"].ToString();
-                        vehicleDetails.ExitTime = sqlDataReader["EXIT_TIME"].ToString();
-                        vehicleDetails.ParkingCharge = Convert.ToInt32(sqlDataReader["CHARGES"]);
-                        vehicleDetailsList.Add(vehicleDetails);
+                        while (sqlDataReader.Read())
+                        {
+                            VehicleDetails vehicleDetails = new VehicleDetails();
+                            vehicleDetails.Parking_Id = Convert.ToInt32(sqlDataReader["PARKING_ID"]);
+                            vehicleDetails.SlotNumber = Convert.ToInt32(sqlDataReader["SLOT_NUMBER"]);
+                            vehicleDetails.VehicleNumber = sqlDataReader["VEHICLE_NUMBER"].ToString();
+                            vehicleDetails.VehicleType = Convert.ToInt32(sqlDataReader["VEHICLE_TYPE"]);
+                            vehicleDetails.EntryTime = (DateTime)sqlDataReader["ENTRY_TIME"];
+                            vehicleDetails.ParkingType = Convert.ToInt32(sqlDataReader["PARKING_TYPE"]);
+                            vehicleDetails.DriverType = Convert.ToInt32(sqlDataReader["DRIVER_TYPE"]);
+                            vehicleDetails.Disabled = sqlDataReader["DISABLED"].ToString();
+                            vehicleDetails.ExitTime = (DateTime)sqlDataReader["EXIT_TIME"];
+                            vehicleDetails.ParkingCharge = Convert.ToInt32(sqlDataReader["CHARGES"]);
+                            vehicleDetailsList.Add(vehicleDetails);
+                        }
+
+                        this.connection.Close();
+                        return vehicleDetailsList;
                     }
-
-                    this.connection.Close();
-                    return vehicleDetailsList;
                 }
-            }
 
-            return null;
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public string GetDriverType(int slotNumber)
+        {
+            Roles roles = new Roles();
+            try
+            {
+                using (this.connection)
+                {
+                    SqlCommand command = new SqlCommand("spGetDriverType", this.connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@SlotNumber", slotNumber);
+                    this.connection.Open();
+                    SqlDataReader sqlDataReader = command.ExecuteReader();
+                    if (sqlDataReader.HasRows)
+                    {
+                        while (sqlDataReader.Read())
+                        {
+                            roles.RoleType = sqlDataReader["ROLE_TYPE"].ToString();
+                        }
+
+                        this.connection.Close();
+                        return roles.RoleType;
+                    }
+                }
+
+                return null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

@@ -38,7 +38,7 @@ namespace ParkingLotModelLayer
         /// <summary>
         /// Gets or sets entry Time.
         /// </summary>
-        public string EntryTime { get; set; }
+        public DateTime EntryTime { get; set; }
 
         /// <summary>
         /// Gets or Sets Parking Type.
@@ -60,11 +60,13 @@ namespace ParkingLotModelLayer
         /// <summary>
         /// Gets or sets Exit Time.
         /// </summary>
-        public string ExitTime { get; set; }
+        public DateTime ExitTime { get; set; }
 
         /// <summary>
         /// Gets Or Sets Parking Charge.
         /// </summary>
         public int ParkingCharge { get; set; }
+
+        public string RoleType { get; set; }
     }
 }

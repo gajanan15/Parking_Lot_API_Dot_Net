@@ -14,10 +14,10 @@ namespace ParkingLotBussinessLayer.Implementation
 
         public MSMQService()
         {
-            this.messageQueue.Path = @".\private$\Bills";
+            this.messageQueue.Path = @".\private$\ParkingLot";
             if (MessageQueue.Exists(this.messageQueue.Path))
             {
-               // this.messageQueue = new MessageQueue(this.messageQueue.Path);
+                this.messageQueue = new MessageQueue(this.messageQueue.Path);
             }
             else
             {

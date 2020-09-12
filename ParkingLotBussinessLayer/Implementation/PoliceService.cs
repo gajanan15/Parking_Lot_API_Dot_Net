@@ -4,6 +4,7 @@
 
 namespace ParkingLotBussinessLayer.Implementation
 {
+    using System;
     using ParkingLotBussinessLayer.Interface;
     using ParkingLotModelLayer;
     using ParkingLotRepositoryLayer;
@@ -25,12 +26,12 @@ namespace ParkingLotBussinessLayer.Implementation
             this.parkingRepository = parkingRepository;
         }
 
-        public Parking ParkVehicle(Parking vehicle)
+        public VehicleDetails ParkVehicle(Parking vehicle)
         {
-            Parking parking = this.parkingRepository.AddVehicleToParking(vehicle);
-            if (parking.VehicleNumber != null)
+            VehicleDetails parking = this.parkingRepository.AddVehicleToParking(vehicle);
+            if (parking != null)
             {
-                this.mSMQService.AddToQueue("Driver Parked Vehicle Having Number: " + parking.VehicleNumber + " At Time : " + parking.EntryTime);
+                this.mSMQService.AddToQueue(parking.RoleType + "Driver Parked Vehicle Having Number: " + parking.VehicleNumber + " At Time : " + parking.EntryTime);
             }
 
             return parking;
@@ -46,9 +47,10 @@ namespace ParkingLotBussinessLayer.Implementation
         public VehicleDetails UnParkVehicle(int slotNumber)
         {
             VehicleDetails vehicleDetails = this.parkingRepository.UnParkVehicle(slotNumber);
-            if (vehicleDetails.VehicleNumber != null)
+            if (vehicleDetails != null)
             {
-                this.mSMQService.AddToQueue("Driver UnParked Vehicle Having Number: " + vehicleDetails.VehicleNumber + " At Time : " + vehicleDetails.ExitTime + " And Parking Charge : " + vehicleDetails.ParkingCharge);
+                TimeSpan timeDifference = vehicleDetails.ExitTime.Subtract(vehicleDetails.EntryTime);
+                this.mSMQService.AddToQueue(vehicleDetails.RoleType + "Driver UnParked Vehicle Having Number: " + vehicleDetails.VehicleNumber + " At Time : " + vehicleDetails.ExitTime + " Total Parking Time : " + (int)timeDifference.TotalMinutes + " And Parking Charge : Rs. " + vehicleDetails.ParkingCharge);
             }
 
             return vehicleDetails;

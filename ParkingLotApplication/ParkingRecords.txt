@@ -3,3 +3,45 @@ Driver Parked Vehicle Having Number: AD78FG1245 At Time : 09-09-2020 11:17:18
 Driver Parked Vehicle Having Number: AD78FG1227 At Time : 09-09-2020 11:17:18
 Driver UnParked Vehicle Having Number: FG78HJ4545 At Time : 09-09-2020 19:54:03 And Parking Charge : 24
 Driver UnParked Vehicle Having Number: AD78FG1227 At Time : 09-09-2020 19:55:06 And Parking Charge : 24
+Driver Parked Vehicle Having Number: PO01LI4512 At Time : 10-09-2020 04:44:43
+Driver Parked Vehicle Having Number: PO01LI4515 At Time : 10-09-2020 04:44:43
+Driver Parked Vehicle Having Number: HJ45KL4512 At Time : 10-09-2020 04:50:16
+Driver Parked Vehicle Having Number: HJ45KL4512 At Time : 10-09-2020 04:50:16
+Driver Parked Vehicle Having Number: HJ45KL1112 At Time : 10-09-2020 04:50:16
+Driver Parked Vehicle Having Number: HJ45KL1112 At Time : 10-09-2020 04:50:16
+Driver Parked Vehicle Having Number: HJ45KP1112 At Time : 10-09-2020 04:50:16
+Driver Parked Vehicle Having Number: XC01PL4545 At Time : 10-09-2020 05:42:59
+Driver Parked Vehicle Having Number: PO02NM1245 At Time : 10-09-2020 05:43:54
+Driver UnParked Vehicle Having Number: XC01PL4545 At Time : 10-09-2020 11:15:34 And Parking Charge : 21
+Driver Parked Vehicle Having Number: AA45ZX7845 At Time : 10-09-2020 06:11:02
+Driver UnParked Vehicle Having Number: PO02NM1245 At Exit Time : 10-09-2020 18:37:14Total Time Wating : -23 And Parking Charge : 29
+Driver Parked Vehicle Having Number: AD01CV7814 At Time : 10-09-2020 13:08:48
+Driver UnParked Vehicle Having Number: AA45ZX7845 At Exit Time : 10-09-2020 18:41:23Total Time Wating : 0 And Parking Charge : 454
+Driver UnParked Vehicle Having Number: AD01CV7814 At Exit Time : 10-09-2020 18:42:39Total Time Wating : 2 And Parking Charge : 35
+Driver Parked Vehicle Having Number: GV01JH1230 At Time : 10-09-2020 13:17:29
+Driver Parked Vehicle Having Number: GH78MK4545 At Time : 10-09-2020 13:17:57
+Driver Parked Vehicle Having Number: GH78NM1245 At Time : 10-09-2020 13:18:36
+Driver UnParked Vehicle Having Number: GV01JH1230 At Exit Time : 10-09-2020 19:07:26 Total Time Wating : -00:19:35.1100000 Minute  And Parking Charge : 41
+Driver UnParked Vehicle Having Number: GH78MK4545 At Exit Time : 10-09-2020 19:25:17 Total Time Wating : 36.9675 Minute  And Parking Charge : 71
+Driver UnParked Vehicle Having Number: GH78NM1245 At Exit Time : 10-09-2020 19:28:22 Total Time Wating : 39 Minute  And Parking Charge : 63
+Driver Parked Vehicle Having Number: CD02GD7888 At Time : 10-09-2020 14:51:40
+Driver Parked Vehicle Having Number: CD02GD7888 At Time : 10-09-2020 14:51:40
+Driver Parked Vehicle Having Number: CD02GD7888 At Time : 10-09-2020 14:51:40
+Driver Parked Vehicle Having Number: XY02GH4545 At Time : 10-09-2020 14:55:33
+Driver UnParked Vehicle Having Number: CD02GD7888 At Exit Time : 10-09-2020 20:38:52 Total Parking Time : 16 Minute  And Parking Charge : 49
+Driver Parked Vehicle Having Number: AS78DS4545 At Time : 10-09-2020 18:35:14
+Driver UnParked Vehicle Having Number: AS78DS4545 At Exit Time : 11-09-2020 00:07:18 Total Parking Time : 1 Minute  And Parking Charge : 23
+Driver Parked Vehicle Having Number: MU01PO1245 At Time : 11-09-2020 04:29:51
+Driver UnParked Vehicle Having Number: MU01PO1245 At Time : 11-09-2020 10:02:12 Total Parking Time : 1 And Parking Charge : 24
+Driver Parked Vehicle Having Number: AS02FG1245 At Time : 11-09-2020 06:28:47
+0 Parked Vehicle Having Number: QQ44CC7878 At Time : 11-09-2020 13:21:10
+ Parked Vehicle Having Number: ZX45AS7777 At Time : 11-09-2020 14:33:26
+OWNER Parked Vehicle Having Number: AD78BG1245 At Time : 11-09-2020 20:28:27
+ UnParked Vehicle Having Number: SD45AF7878 At Exit Time : 11-09-2020 20:38:56 Total Parking Time : 20 Minute  And Parking Charge : 21
+OWNER UnParked Vehicle Having Number: SD45AF7868 At Exit Time : 11-09-2020 20:43:04 Total Parking Time : 21 Minute  And Parking Charge : 21
+DRIVER UnParked Vehicle Having Number: AS77BG8888 At Exit Time : 11-09-2020 20:43:42 Total Parking Time : 202 Minute  And Parking Charge : 42
+OWNER UnParked Vehicle Having Number: XC78ZX4545 At Exit Time : 11-09-2020 21:58:13 Total Parking Time : 152 Minute  And Parking Charge : 42
+OWNER UnParked Vehicle Having Number: XC78ZX4512 At Exit Time : 11-09-2020 22:42:24 Total Parking Time : 188 Minute  And Parking Charge : 63
+OWNER UnParked Vehicle Having Number: RT45YU7878 At Exit Time : 11-09-2020 22:42:45 Total Parking Time : 170 Minute  And Parking Charge : 63
+SECURITY UnParked Vehicle Having Number: GT78LK1111 At Exit Time : 12-09-2020 11:18:13 Total Parking Time : 1076 Minute  And Parking Charge : 594
+SECURITY UnParked Vehicle Having Number: AZ00AA4444 At Exit Time : 12-09-2020 12:11:56 Total Parking Time : 807 Minute  And Parking Charge : Rs. 462
